@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 # import
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -15,10 +12,6 @@ import win32com.client
 from pretty_html_table import build_table
 import time
 from datetime import datetime
-
-
-# In[2]:
-
 
 ## Similarweb ##
 
@@ -185,16 +178,9 @@ def put_to_sheet(data_df, summary_df):
     res = sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="'SimilarWeb'!A1", valueInputOption='USER_ENTERED', body={'values': [df_now.columns.values.tolist()] + df_now.values.tolist()}).execute()
     res = sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="'SimilarWeb'!H1", valueInputOption='USER_ENTERED', body={'values': [df_sum_now.columns.values.tolist()] + df_sum_now.values.tolist()}).execute()
 
-
-# In[3]:
-
-
+# websites
 df = scrape_similarweb(['ushopbd.com', 'chaldal.com', 'shwapno.com', 'daraz.com.bd', 'foodpanda.com.bd', 'shajgoj.com', 'ohsogo.com'])
 display(df)
-
-
-# In[6]:
-
 
 # email
 ol = win32com.client.Dispatch("outlook.application")
@@ -225,10 +211,4 @@ newmail.Attachments.Add(filename)
 
 # display
 newmail.Send()
-
-
-# In[ ]:
-
-
-
 
